@@ -23,11 +23,23 @@ do
 done
 
 #Checking who won and by how much
-if [[ hcount -lt tcount ]]
+win=$(( $hcount - $tcount ))
+
+if [[ $win -lt 0 ]]
 then
-	diff=$(( $tcount-$hcount ))
-	echo Tails won by $diff
+	win=$(( $win*(-1) ))
+fi
+
+if [[ $win -ge 2 ]]
+then
+	if [[ $hcount -lt $tcount ]]
+	then
+		diff=$(( $tcount-$hcount ))
+		echo Tails won by $diff
+	else
+		diff=$(( $hcount-$tcount ))
+		echo Heads won by $diff
+	fi
 else
-	diff=$(( $hcount-$tcount ))
-	echo Heads won by $diff
+	echo It is a tie
 fi
