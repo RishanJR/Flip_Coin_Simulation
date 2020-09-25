@@ -1,9 +1,9 @@
-#!/bin/bash -x
+#!/bin/bash
 
 echo -e "\nWelcome to Flip Coin Simulation"
 echo -e "This problem displays the winner, Heads or Tails\n"
 
-#Variables
+#Variables to check the number of time heads or tails has won
 hcount=0
 tcount=0
 
@@ -22,12 +22,12 @@ function check() {
 	fi
 }
 
-#Function to check the difference
+#Function to check the difference between head and tail wins
 function difference() {
 
 	win=$(( $1 - $2 ))
 
-	if [[ $win -lt 0 ]]
+	if [[ $win -lt 0 ]]				#Making negative to positive
 	then
 		win=$(( $win*(-1) ))
 	fi
@@ -38,10 +38,10 @@ function difference() {
 #Main
 while [[ $hcount -lt 21 && $tcount -lt 21 ]]
 do
-	check hcount tcount
+	check hcount tcount				#Sending the number of times heads and tails have won as arguments to check function
 done
 
-res=`difference hcount tcount`
+res=`difference hcount tcount`				#Sending the number of times heads and tails have won as arguments to difference function
 
 #Checking and removing tie condition
 while [[ res -lt 2 ]]
